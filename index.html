@@ -576,7 +576,7 @@
             object-fit: cover;
         }
 
-        /* Processing 区域 */
+        /* Processing  */
         .generating-section {
             margin-top: auto;
             width: 100%;
@@ -1261,6 +1261,442 @@
         .section-title {
             margin-bottom: 0.3rem; /* 减小标题下边距 */
         }
+
+        /* 确保所有模块的宽度一致 */
+        .featured-works, .faq-section {
+            background: linear-gradient(145deg, rgba(20, 21, 25, 0.9), rgba(13, 14, 18, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            width: 100%; /* 确保宽度为100% */
+            box-sizing: border-box; /* 确保padding计入总宽度 */
+        }
+
+        /* 更新推荐作品部分的样式 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 改为5列 */
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .featured-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1; /* 改为1:1比例 */
+            cursor: pointer;
+            background: rgba(13, 14, 18, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .featured-item {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-prompt {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 1.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* 添加动态背景样式 */
+        .particles-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #00f7ff, #00ff88);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* 动态光晕效果 */
+        .glow-effect {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 50% 50%,
+                rgba(0, 247, 255, 0.03) 0%,
+                transparent 70%
+            );
+            animation: pulse-glow 8s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+
+        /* 3D悬浮效果 */
+        .gallery-item, .featured-item {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .gallery-item:hover, .featured-item:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                20px 20px 60px rgba(0, 247, 255, 0.1),
+                -20px -20px 60px rgba(0, 255, 136, 0.1);
+        }
+
+        /* 图片光晕效果 */
+        .gallery-image, .featured-image {
+            position: relative;
+        }
+
+        .gallery-image::after, .featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(0, 247, 255, 0.1) 50%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image::after,
+        .featured-item:hover .featured-image::after {
+            opacity: 1;
+        }
+
+        /* 按钮点击波纹效果 */
+        .generate-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease-out, height 0.6s ease-out;
+        }
+
+        .generate-btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 标题动画效果 */
+        .section-title {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00f7ff, transparent);
+            animation: slide-line 3s infinite;
+        }
+
+        @keyframes slide-line {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* 滚动显示动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(0, 247, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* 添加动态网格背景 */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 247, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 247, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+        }
+
+        /* 添加浮动科技元素 */
+        .tech-element {
+            position: absolute;
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .tech-element::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(0, 247, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        .tech-element-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+        }
+
+        .tech-element-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            right: 8%;
+        }
+
+        /* 添加光束效果 */
+        .light-beam {
+            position: fixed;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(to bottom, 
+                transparent,
+                rgba(0, 247, 255, 0.1),
+                rgba(0, 255, 136, 0.1),
+                transparent
+            );
+            animation: beam-move 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes beam-move {
+            0% { transform: translateX(-100vw); }
+            100% { transform: translateX(200vw); }
+        }
+
+        /* 添加悬浮数字效果 */
+        .floating-numbers {
+            position: fixed;
+            color: rgba(0, 247, 255, 0.1);
+            font-family: monospace;
+            font-size: 14px;
+            pointer-events: none;
+            user-select: none;
+            z-index: -1;
+        }
+
+        /* 添加角落装饰 */
+        .corner-decoration {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            opacity: 0.5;
+        }
+
+        .corner-top-right {
+            top: 0;
+            right: 0;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bottom-left {
+            bottom: 0;
+            left: 0;
+            border-right: none;
+            border-top: none;
+        }
+
+        /* 内容区域装饰 */
+        .section-header::before {
+            content: '<>';
+            font-family: monospace;
+            color: rgba(0, 247, 255, 0.2);
+            position: absolute;
+            left: -30px;
+            font-size: 1.2rem;
+        }
+
+        .section-header::after {
+            content: '</>';
+            font-family: monospace;
+            color: rgba(0, 247, 255, 0.2);
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            font-size: 1.2rem;
+        }
+
+        /* 卡片装饰 */
+        .gallery-item::before,
+        .featured-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(0, 247, 255, 0.5),
+                transparent
+            );
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover::before,
+        .featured-item:hover::before {
+            opacity: 1;
+        }
+
+        /* 添加科技感装饰线 */
+        .tech-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .tech-line {
+            position: absolute;
+            background: rgba(0, 247, 255, 0.1);
+        }
+
+        .tech-line-h {
+            height: 1px;
+            width: 100%;
+            transform-origin: left;
+            animation: line-extend 2s ease-out forwards;
+        }
+
+        .tech-line-v {
+            width: 1px;
+            height: 100%;
+            transform-origin: top;
+            animation: line-extend 2s ease-out forwards;
+        }
+
+        @keyframes line-extend {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
     </style>
 </head>
 <body>
@@ -1273,6 +1709,7 @@
                 <div class="nav-center">
                     <a href="index.html" class="nav-link active">Home</a>
                     <a href="pricing.html" class="nav-link">Price</a>
+                    <a href="#" class="nav-link" id="contactLink">Contact</a>
                 </div>
                 <div class="nav-links">
                     <a href="#login" class="login-btn">Login</a>
@@ -1283,8 +1720,9 @@
 
     <main class="main">
         <div class="container">
+            <!-- 上半部分保持 content-grid 布局 -->
             <div class="content-grid">
-                <!-- 左侧提示词输入区域 -->
+                <!-- 左侧创建区域 -->
                 <section class="prompt-section">
                     <div class="section-header">
                         <h2 class="section-title">CREATE IMAGE</h2>
@@ -1322,7 +1760,7 @@
                     </div>
                 </section>
 
-                <!-- 右侧已生成图片展示区域 -->
+                <!-- 右侧图片展示区域 -->
                 <section class="gallery-section">
                     <div class="section-header">
                         <h2 class="section-title">GALLERY</h2>
@@ -1369,80 +1807,225 @@
                 </section>
             </div>
 
-            <!-- 在 FAQ section 前添加推荐作品列表部分 -->
-            <section class="featured-works">
-                <h2 class="section-title">FEATURED ARTWORKS</h2>
-                <div class="featured-grid">
-                    <!-- 第一行 -->
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Quantum portal in deep space</div>
+            <!-- 下半部分也使用 content-grid 布局 -->
+            <div class="content-grid">
+                <!-- FEATURED ARTWORKS 部分 -->
+                <section class="featured-works" style="grid-column: 1 / -1;">
+                    <h2 class="section-title">FEATURED ARTWORKS</h2>
+                    <div class="featured-grid">
+                        <!-- 第一行 -->
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/3052361/pexels-photo-3052361.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Northern Lights</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Crystal Mountains</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Digital Landscape</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Mystic Forest</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1738434/pexels-photo-1738434.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Ocean Dreams</div>
+                        </div>
+                        <!-- 第二行 -->
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1774389/pexels-photo-1774389.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Urban Nights</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1723637/pexels-photo-1723637.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Desert Winds</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Neon City</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1722183/pexels-photo-1722183.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Mountain Lake</div>
+                        </div>
+                        <div class="featured-item">
+                            <img src="https://images.pexels.com/photos/1731427/pexels-photo-1731427.jpeg" alt="Featured artwork" class="featured-image">
+                            <div class="featured-prompt">Sunset Valley</div>
+                        </div>
                     </div>
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/8100784/pexels-photo-8100784.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Crystalline city in the clouds</div>
-                    </div>
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/7232820/pexels-photo-7232820.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Digital neural landscape</div>
-                    </div>
-                    <!-- 第二行 -->
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/7234213/pexels-photo-7234213.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Holographic data streams</div>
-                    </div>
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/8386668/pexels-photo-8386668.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Nanotech energy core</div>
-                    </div>
-                    <div class="featured-item">
-                        <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg" alt="Featured artwork" class="featured-image">
-                        <div class="featured-prompt">Quantum realm gateway</div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- FAQ 部分 -->
-            <section class="faq-section">
-                <h2 class="section-title">FAQ</h2>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <div class="faq-question">How to get the best generation results?</div>
-                        <div class="faq-answer">
-                            Provide detailed descriptions including scene, style, lighting, and composition. The more specific your prompt, the better the results.
+                <!-- FAQ 部分 -->
+                <section class="faq-section" style="grid-column: 1 / -1;">
+                    <h2 class="section-title">FAQ</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">How do I choose the right plan?</div>
+                            <div class="faq-answer">
+                                Choose based on your usage needs: Basic for personal use, Professional for content creators, and Enterprise for business teams requiring advanced features and support.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Can I change my plan anytime?</div>
+                            <div class="faq-answer">
+                                Yes, you can upgrade or downgrade your plan at any time. Charges will be prorated based on your billing cycle.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">What about refunds?</div>
+                            <div class="faq-answer">
+                                We offer a 7-day money-back guarantee. If you're not satisfied with our service, you can request a full refund.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Do you offer custom enterprise solutions?</div>
+                            <div class="faq-answer">
+                                Yes, we provide customized solutions for enterprise clients. Contact our sales team to discuss your specific requirements.
+                            </div>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question">How long does it take to generate an image?</div>
-                        <div class="faq-answer">
-                            Typically, it takes 10-30 seconds per image, depending on complexity and server load.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Can I use the generated images commercially?</div>
-                        <div class="faq-answer">
-                            Yes, you have full usage rights for generated images. We recommend reviewing content to ensure it doesn't infringe on others' rights.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">How do I download the generated images?</div>
-                        <div class="faq-answer">
-                            Click the download button in the bottom right corner of each image. Images will be saved in high-quality PNG format.
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </main>
 
     <!-- 添加装饰元素 -->
     <div class="tech-decoration" style="top: 20%; left: 5%;"></div>
     <div class="tech-decoration" style="bottom: 30%; right: 8%;"></div>
+    <div class="grid-background"></div>
+    <div class="tech-element tech-element-1"></div>
+    <div class="tech-element tech-element-2"></div>
+    <div class="light-beam"></div>
+    <div class="corner-decoration corner-top-right"></div>
+    <div class="corner-decoration corner-bottom-left"></div>
 
     <!-- 更新生成按钮 -->
     <button class="generate-btn">
         <span class="btn-text">Generate</span>
         <span class="btn-icon">→</span>
     </button>
+
+    <!-- 添加动态背景元素 -->
+    <div class="particles-background"></div>
+    <div class="glow-effect"></div>
+
+    <!-- 添加粒子生成脚本 -->
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.particles-background');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // 随机大小
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+
+    <!-- 添加滚动显示效果 -->
+    <script>
+        // 添加滚动显示效果
+        function handleScroll() {
+            const elements = document.querySelectorAll('.gallery-item, .featured-item, .faq-item');
+            
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top <= window.innerHeight * 0.8;
+                
+                if (isVisible) {
+                    element.classList.add('fade-in', 'visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // 初始检查
+    </script>
+
+    <!-- 添加弹窗脚本 -->
+    <script>
+        // 获取模态框元素
+        const modal = document.getElementById('contactModal');
+        const contactLink = document.getElementById('contactLink');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // 点击 Contact 链接时显示模态框
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        });
+
+        // 点击关闭按钮关闭态框
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢复背景滚动
+        });
+
+        // 点击模态框外部关闭模态框
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ESC 键关闭模态框
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+
+    <!-- 添加动态数字效果的脚本 -->
+    <script>
+        function createFloatingNumbers() {
+            const container = document.createElement('div');
+            container.className = 'floating-numbers';
+            document.body.appendChild(container);
+
+            setInterval(() => {
+                const number = document.createElement('div');
+                number.textContent = Math.random().toString(2).substr(2, 8);
+                number.style.position = 'absolute';
+                number.style.left = Math.random() * 100 + 'vw';
+                number.style.top = Math.random() * 100 + 'vh';
+                number.style.opacity = '0';
+                number.style.transition = 'opacity 2s';
+                container.appendChild(number);
+
+                requestAnimationFrame(() => {
+                    number.style.opacity = '0.1';
+                });
+
+                setTimeout(() => {
+                    number.remove();
+                }, 2000);
+            }, 500);
+        }
+
+        createFloatingNumbers();
+    </script>
 </body>
 </html>
